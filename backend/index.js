@@ -26,6 +26,17 @@ io.on("connection", (socket) => {
   socket.on("send-message", (data) => {
     socket.broadcast.emit("server-message", data);
   });
+
+  socket.on("typing-started", () => {
+    // console.log("typing")
+    socket.broadcast.emit("typing-started-from-server");
+  });
+
+  socket.on("typing-stoped", () => {
+    // console.log("typing")
+    socket.broadcast.emit("typing-stoped-from-server");
+  });
+
   socket.on("disconnect", () => {
     console.log("User left");
   });
